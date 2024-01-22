@@ -11,8 +11,6 @@ const CallButton = () => {
     const [connected, setConnected] = useState(false);
     const [connecting, setConnecting] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [muted, setMuted] = useState(false);
-    const [mutedVideo, setMutedAudio] = useState(false);
     const [defaultCallParams, setDefaultCallParams] = useState({});
     const [callOngoing, setCallOngoing] = useState(false);
 
@@ -100,6 +98,7 @@ const CallButton = () => {
                 },
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userId]);
 
     const makeCall = ({ userId, isVideoCall }) => {
