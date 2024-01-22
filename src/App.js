@@ -1,23 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-
+import CallButton from './CallButton';
 function App() {
+  const channelUrl = 'sendbird_open_channel_26714_930dd7beb8015b90cefaf56b1a0235a5cdb98e7c';
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CallButton channelUrl={channelUrl} />
     </div>
   );
 }
