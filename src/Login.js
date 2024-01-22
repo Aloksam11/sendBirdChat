@@ -1,9 +1,45 @@
 import React from 'react';
-
+import { useState } from 'react';
 const Login = ({ setUserId }) => {
+    const [isRecording, setIsRecording] = useState(false);
+    const [audioBlob, setAudioBlob] = useState(null);
+    const [audioUrl, setAudioUrl] = useState(null);
     const connect = (e) => {
         e.preventDefault();
         setUserId(e.target.userId.value);
+        if (audioBlob) {
+            console.log('Audio Blob:', audioBlob);
+        }
+    };
+    const startRecording = () => {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then((stream) => {
+                const mediaRecorder = new MediaRecorder(stream);
+                const chunks = [];
+
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        chunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    const audioBlob = new Blob(chunks, { type: 'audio/wav' });
+                    setAudioBlob(audioBlob);
+                    setAudioUrl(URL.createObjectURL(audioBlob));
+                };
+
+                mediaRecorder.start();
+                setIsRecording(true);
+
+                setTimeout(() => {
+                    mediaRecorder.stop();
+                    setIsRecording(false);
+                }, 5000); // Adjust recording duration as needed
+            })
+            .catch((error) => {
+                console.error('Error accessing microphone:', error);
+            });
     };
 
     return (
@@ -42,8 +78,27 @@ const Login = ({ setUserId }) => {
                         </button>
                     </div>
                 </div>
+
+                <div>
+                    <button
+                        type='button'
+                        onClick={startRecording}
+                        className={`rounded-md w-full bg-${isRecording ? 'red' : 'green'}-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-${isRecording ? 'red' : 'green'}-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${isRecording ? 'red' : 'green'}-600`}
+                    >
+                        {isRecording ? 'Stop Recording' : 'Start Recording'}
+                    </button>
+                </div>
+
+                {audioUrl && (
+                    <div>
+                        <audio controls>
+                            <source src={audioUrl} type='audio/wav' />
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                )}
             </div>
-        </form>
+        </form >
     );
 };
 
