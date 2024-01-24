@@ -6,14 +6,14 @@ import axios from "axios";
 import SendBird from "sendbird";
 
 const APP_ID = "5471A53B-063C-41C6-A75E-95332D3FC8C2";
-const USER_ID = "Try";
+const USER_ID = "Jacob";
 SendBirdCall.init(APP_ID);
 function App() {
 
   const createUser = () => {
     const body = {
-      user_id: "Jacob",
-      nickname: "Asty",
+      user_id: "shila",
+      nickname: "she",
       profile_url:
         "https://sendbird.com/main/img/profiles/profile_05_512px.png",
       issue_access_token: false,
