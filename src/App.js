@@ -6,7 +6,7 @@ import axios from "axios";
 import SendBird from "sendbird";
 
 const APP_ID = "5471A53B-063C-41C6-A75E-95332D3FC8C2";
-const USER_ID = "Jacob";
+const USER_ID = "Try";
 SendBirdCall.init(APP_ID);
 function App() {
 
