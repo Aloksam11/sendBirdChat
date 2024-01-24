@@ -13,11 +13,11 @@ const CallButton = () => {
     const [loading, setLoading] = useState(false);
     const [defaultCallParams, setDefaultCallParams] = useState({});
     const [callOngoing, setCallOngoing] = useState(false);
-
+    const accessToken = '56f0aeaad554c8bc2ec3f4a731a7afbca4974fe9'
     const authenticate = async () => {
         try {
             const result = await new Promise((resolve, reject) => {
-                SendBirdCall.authenticate({ userId }, (res, error) => {
+                SendBirdCall.authenticate({ userId, accessToken }, (res, error) => {
                     if (error) {
                         reject(error);
                     } else {
