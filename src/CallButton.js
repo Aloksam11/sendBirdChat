@@ -13,11 +13,11 @@ const CallButton = () => {
     const [loading, setLoading] = useState(false);
     const [defaultCallParams, setDefaultCallParams] = useState({});
     const [callOngoing, setCallOngoing] = useState(false);
-    const accessToken = '56f0aeaad554c8bc2ec3f4a731a7afbca4974fe9'
+    // const accessToken = '56f0aeaad554c8bc2ec3f4a731a7afbca4974fe9'
     const authenticate = async () => {
         try {
             const result = await new Promise((resolve, reject) => {
-                SendBirdCall.authenticate({ userId, accessToken }, (res, error) => {
+                SendBirdCall.authenticate({ userId }, (res, error) => {
                     if (error) {
                         reject(error);
                     } else {
@@ -158,7 +158,7 @@ const CallButton = () => {
                             <div className='relative h-[700px] w-screen flex rounded-md'>
                                 {call?.isVideoCall && (
                                     <>
-                                        <video
+                                        {/* <video
                                             className='absolute top-0 left-0 w-full h-full object-cover z-0 rounded-md'
                                             id='remote_video_element_id'
                                             autoPlay
@@ -169,7 +169,22 @@ const CallButton = () => {
                                             id='local_video_element_id'
                                             autoPlay
                                             style={{ width: '30%' }}
+                                        /> */}
+                                        <video
+                                            className='absolute top-0 left-0 w-full h-full object-cover z-0 rounded-md'
+                                            id='remote_video_element_id'
+                                            autoPlay={true}
+                                            visible={call?.isVideoCall}
+                                            style={call?.isVideoCall ? { width: '100%' } : { width: '0%' }}
                                         />
+                                        <video
+                                            className='absolute top-0 left-0 object-cover z-1 w-[400px] h-[250px] rounded-md'
+                                            id='local_video_element_id'
+                                            autoPlay={true}
+                                            visible={call?.isVideoCall}
+                                            style={call?.isVideoCall ? { width: '30%' } : { width: '0%' }}
+                                        />
+
                                     </>
                                 )}
                             </div>
