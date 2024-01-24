@@ -29,7 +29,7 @@ const CallButton = () => {
             console.log(`Authenticated as ${userId}`);
             return result;
         } catch (error) {
-            console.log('Error authenticating');
+            console.log('Error authenticatinga');
             throw error;
         }
     };
