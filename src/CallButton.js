@@ -158,19 +158,21 @@ const CallButton = () => {
                             <div className='relative h-[700px] w-screen flex rounded-md'>
                                 {call?.isVideoCall && (
                                     <>
-                                        {/* <video
+                                        <video
                                             className='absolute top-0 left-0 w-full h-full object-cover z-0 rounded-md'
                                             id='remote_video_element_id'
                                             autoPlay
+                                            playsInline
                                             style={{ width: '100%' }}
                                         />
                                         <video
                                             className='absolute top-0 left-0 object-cover z-1 w-[400px] h-[250px] rounded-md'
                                             id='local_video_element_id'
                                             autoPlay
+                                            playsInline
                                             style={{ width: '30%' }}
-                                        /> */}
-                                        <video
+                                        />
+                                        {/* <video
                                             className='absolute top-0 left-0 w-full h-full object-cover z-0 rounded-md'
                                             id='remote_video_element_id'
                                             autoPlay={true}
@@ -183,7 +185,7 @@ const CallButton = () => {
                                             autoPlay={true}
                                             visible={call?.isVideoCall}
                                             style={call?.isVideoCall ? { width: '30%' } : { width: '0%' }}
-                                        />
+                                        /> */}
 
                                     </>
                                 )}
@@ -218,6 +220,7 @@ const CallButton = () => {
                                 <video
                                     className='absolute top-0 left-0 w-full h-full object-cover z-0 rounded-md'
                                     id='remote_video_element_id'
+                                    playsInline
                                     autoPlay={true}
                                     visible={call?.isVideoCall}
                                     style={
@@ -228,6 +231,7 @@ const CallButton = () => {
                                     className='absolute top-0 left-0 object-cover z-1 w-[400px] h-[250px] rounded-md'
                                     id='local_video_element_id'
                                     autoPlay={true}
+                                    playsInline
                                     visible={call?.isVideoCall}
                                     style={
                                         call?.isVideoCall ? { width: '30%' } : { width: '0%' }
